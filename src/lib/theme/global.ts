@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-import { DefaultTheme } from "./styled";
+import { DefaultTheme } from "styled-components";
 
-export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
+export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>` 
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;

@@ -51,7 +51,7 @@ const List = styled.ul`
 `;
 
 export default {
-    title: 'Компоненты/Icon',
+    title: 'Components/Icon',
     component: Icon,
     parameters: {
         status: {
