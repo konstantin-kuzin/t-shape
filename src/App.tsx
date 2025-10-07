@@ -1,16 +1,19 @@
 import React from "react";
-import { GlobalStyle } from "./lib/theme";
-import { Placeholder } from "./lib/placeholder";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyle, lightTheme, darkTheme} from "./lib/theme";
+import { Badge } from "./lib";
 
 function App() {
-	const switcher = false;
 	return (
-		<>
+		<ThemeProvider theme={lightTheme}>
 			<GlobalStyle />
-			<main>
-				<Placeholder text="Привет мир!" />
+			<main style={{ padding: "20px", display: "flex", gap: "16px", alignItems: "center" }}>
+				<Badge text="Primary" mode="primary" />
+				<Badge text="Secondary" mode="secondary" />
+				<Badge text="Neutral" mode="neutral" />
+				<Badge text="" mode="neutral" />
 			</main>
-		</>
+		</ThemeProvider>
 	);
 }
 

@@ -1,84 +1,60 @@
 export const colors = {
-	grey: {
-		50: "#F7F8F9",
-		100: "#E0E2E6",
-		200: "#ADB5BF",
-		300: "#8892A1",
-		400: "#627083",
-		500: "#4E5A69",
-		600: "#3F4854",
-		700: "#313842",
-		800: "#23282F",
-		900: "#0F1114",
+	// Neutral/Grey colors
+	neutral: {
+		100: "#FFFFFF", // base/neutral 100
+		200: "#EFF0F0", // base/neutral 200
+		300: "#D8D9D9", // base/neutral 300
+		400: "#BEBFC0", // base/neutral 400
+		500: "#AAA6A7", // base/neutral 500
+		600: "#717375", // base/neutral 600
+		700: "#525456", // base/neutral 700
+		800: "#252627", // base/neutral 800
 	},
 
-	green: {
-		50: "#F2F9F7",
-		100: "#CCE7DF",
-		200: "#7BC0AB",
-		300: "#3EA284",
-		400: "#01855D",
-		500: "#016A4A",
-		600: "#01553C",
-		700: "#01432F",
-		800: "#003021",
-		900: "#00140E",
+	// Storm colors
+	storm: {
+		100: "#EAEFF0", // base/storm 100
+		200: "#D2DCDF", // base/storm 200
+		300: "#B5C5CA", // base/storm 300
+		400: "#97ADB5", // base/storm 400
+		500: "#5D7A83", // base/storm 500
+		600: "#44595F", // base/storm 600
+		700: "#263236", // base/storm 700
+		800: "#151C1E", // base/storm 800
 	},
 
-	cyan: {
-		50: "#F2F8FB",
-		100: "#CCE4EE",
-		200: "#7AB9D3",
-		300: "#3D98BF",
-		400: "#0078AB",
-		500: "#006089",
-		600: "#004D6D",
-		700: "#003C56",
-		800: "#002B3E",
-		900: "#00121A",
-	},
-
+	// Blue colors
 	blue: {
-		50: "#F3F7FD",
-		100: "#CEDFF7",
-		200: "#80ABEA",
-		300: "#4685E0",
-		400: "#0B5ED6",
-		500: "#094BAB",
-		600: "#073C89",
-		700: "#062F6B",
-		800: "#04224D",
-		900: "#020E20",
+		100: "#E8F6FC", // base/blue 100
+		200: "#B2DEFF", // base/blue 200
+		300: "#80C8FF", // base/blue 300
+		400: "#4DB2FF", // base/blue 400
+		500: "#0073CC", // base/blue 500
+		600: "#005699", // base/blue 600
+		700: "#003157", // base/blue 700
+		800: "#051A2B", // base/blue 800
 	},
 
-	pink: {
-		50: "#FDF3F7",
-		100: "#F7CDDD",
-		200: "#EB7EA8",
-		300: "#E2437F",
-		400: "#D90757",
-		500: "#AE0646",
-		600: "#8B0438",
-		700: "#6D042C",
-		800: "#4E031F",
-		900: "#21010D",
+	// Orange colors
+	orange: {
+		100: "#FEF9F1", // base/orange 100
+		200: "#F9D7B9", // base/orange 200
+		300: "#F5B889", // base/orange 300
+		400: "#F0984C", // base/orange 400
+		500: "#B45F04", // base/orange 500
+		600: "#924A0C", // base/orange 600
+		700: "#482C14", // base/orange 700
+	},
+// Storm colors
+	coral: {
+		100: "#FFEAE5", // base/storm 100
+		200: "#FFBFB2", // base/storm 200
+		300: "#FA9C89", // base/storm 300
+		400: "#FB6F53", // base/storm 400
+		500: "#C33D22", // base/storm 500
+		600: "#A12A12", // base/storm 600
+		700: "#531609", // base/storm 700
+		800: "#2E0C05", // base/storm 800
 	},
 
-	red: {
-		50: "#FEF3F4",
-		100: "#FBCFD1",
-		200: "#F48388",
-		300: "#EF4A51",
-		400: "#EA111A",
-		500: "#BB0E15",
-		600: "#960B11",
-		700: "#75090D",
-		800: "#540609",
-		900: "#230304",
-	},
-
-	white: "#FFFFFF",
-	whiteAlpha: "hsla(0,0%,100%,0.1)",
-	black: "#020103",
-	focus: "hsla(227,100%,88%,0.6)",
 };
