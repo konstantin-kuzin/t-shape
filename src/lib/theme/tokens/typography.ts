@@ -14,9 +14,9 @@ export const typography = {
 		h4: spacers[24],
 		h5: spacers[18],
 		h6: spacers[16],
-		base: spacers[16],
-		small: spacers[14],
-		extraSmall: spacers[12],
+		big: spacers[16],
+		medium: spacers[14],
+		small: spacers[12],
 	},
 
 	lineHeight: {
@@ -26,14 +26,14 @@ export const typography = {
 		h4: spacers[24],
 		h5: spacers[24],
 		h6: spacers[24],
-		base: spacers[24],
-		small: spacers[20],
-		extraSmall: spacers[16],
+		big: spacers[20],
+		medium: spacers[20],
+		small: spacers[16],
 	},
 
 	fontWeight: {
-		regular: "400",
-		medium: "500",
+		regular: "500",
 		semiBold: "600",
+		bold: "700",
 	},
 };

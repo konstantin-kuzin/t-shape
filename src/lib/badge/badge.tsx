@@ -1,9 +1,8 @@
 
-import { FC } from "react";
 import styled, { css } from "styled-components";
 import { typography } from "../theme/tokens/typography";
 
-export interface BadgeProps {
+export interface IBadgeProps {
 	text?: string;
 	mode?: "primary" | "secondary" | "neutral";
 	size?: "small" | "medium";
@@ -32,8 +31,8 @@ const badgeMode = {
 
 const badgeSize = {
 	medium: css`
-			font-size: ${typography.fontSize.base};
-			line-height: ${typography.lineHeight.base};
+			font-size: ${typography.fontSize.medium};
+			line-height: ${typography.lineHeight.medium};
 			padding: 4px 20px;
 			min-height: 32px;
 			`,
@@ -45,7 +44,7 @@ const badgeSize = {
 			`,
 	}
 
-const StyledBadge = styled.div<{ mode: BadgeProps["mode"]; size: BadgeProps["size"] }>`
+const StyledBadge = styled.div<IBadgeProps>`
 	display: inline-block;
 	font-style: normal;
 	font-weight: 500;
@@ -62,15 +61,11 @@ const StyledBadge = styled.div<{ mode: BadgeProps["mode"]; size: BadgeProps["siz
 `;
 
 
-export const Badge: FC<BadgeProps> = ({
-	text = "Badge",
-	mode = "primary",
-	size = "small",
-}) => {
-	const badgeText = text ? text : "Badge";
+export const Badge: React.FC<IBadgeProps> = ({... props}) => {
+	const badgeText = props.text ? props.text : "Badge";
 
 	return (
-		<StyledBadge mode={mode} size={size}>
+		<StyledBadge mode={props.mode} size={props.size}>
 			{badgeText}
 		</StyledBadge>
 	);

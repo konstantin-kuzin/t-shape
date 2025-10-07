@@ -1,5 +1,6 @@
 import "styled-components";
 
+declare module "styled-components" {
 
   export interface DefaultTheme {
     colors: {
@@ -114,5 +115,5 @@ import "styled-components";
       overlayNotification: number;
     };
   */
-
+  }
 }

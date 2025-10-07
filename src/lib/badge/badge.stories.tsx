@@ -14,12 +14,12 @@ export default {
 	
 	argTypes: {
 		mode: {
-			control: { type: "radio" },
+			control: { type: "inline-radio" },
 			options: ["primary", "secondary", "neutral"] as const,
 			description: "Badge mode",
 		},
 		size: {
-			control: { type: "radio" },
+			control: { type: "inline-radio" },
 			options: ["small", "medium"] as const,
 			description: "Badge size",
 		},
