@@ -11,7 +11,7 @@ export interface IBadgeProps {
 
 const badgeMode = {
 	primary: css`
-		color: ${(props) => props.theme.colors.text.base};
+		color: ${(props) => props.theme.colors.text.inverted};
 		background-color: ${(props) => props.theme.colors.bg.primary};
 		border: 1px solid ${(props) => props.theme.colors.bg.primary};
 	`,

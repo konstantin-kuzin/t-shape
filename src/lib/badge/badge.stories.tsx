@@ -10,7 +10,6 @@ export default {
 		},
 		tags: ["autodocs"],
 	},
-	tags: ["autodocs"],
 	
 	argTypes: {
 		mode: {
@@ -88,5 +87,10 @@ export const LongValue = {
 	args: {
 		text: "Очень длинный текст бейджа который не помещается в контейнер",
 		mode: "secondary" as const,
+	},
+	parameters: {
+		controls: {
+			exclude: ["size"],
+		},
 	},
 };

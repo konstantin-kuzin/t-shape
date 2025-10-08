@@ -33,10 +33,10 @@ const preview: Preview = {
 				items: [
 					{
 						value: "light",
-						title: "Светлая тема",
+						title: "Light Theme",
 						icon: "circlehollow",
 					},
-					{ value: "dark", title: "Темная тема", icon: "circle" },
+					{ value: "dark", title: "Dark Theme", icon: "circle" },
 				],
 				dynamicTitle: true,
 			},
@@ -47,7 +47,7 @@ const preview: Preview = {
 export default preview;
 
 export const decorators = [
-	(Story, context) => {
+	(Story: React.ElementType, context: { globals: { theme: string } }) => {
 		const theme = context.globals.theme === "dark" ? darkTheme : lightTheme;
 		return (
 			<ThemeProvider theme={theme}>

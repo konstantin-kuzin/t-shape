@@ -25,9 +25,9 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
         color: ${({ theme }) => theme.colors.text.base};
         min-height: 100vh;
         transition: background-color 0.2s ease, color 0.2s ease;
-        display: flex, 
-        gap: 16px, 
-        alignItems: center,
-        margin: 100px
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        margin: 100px;
     }
 `;

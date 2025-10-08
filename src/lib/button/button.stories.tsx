@@ -10,7 +10,6 @@ export default {
 		},
 		tags: ["autodocs"],
 	},
-	tags: ["autodocs"],
 
 	argTypes: {
 		mode: {
@@ -92,11 +91,9 @@ export const States = {
 	render: (args: {}) => (
 		<div style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-start", paddingTop: "50px"}}>
 			<div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-				<Button {...args} text="Default" />
-				<Button {...args} text="Hover" />
-				<Button {...args} text="Active" />
+				<Button {...args} text="Enabled" />
 				<Button {...args} disabled text="Disabled" />
-				<Button {...args} loading text="Loading" />
+				<Button {...args} loading={true} text="Loading" />
 			</div>
 		</div>
 	),
