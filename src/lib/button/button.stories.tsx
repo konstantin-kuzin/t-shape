@@ -54,6 +54,13 @@ const meta: Meta<typeof Button> = {
 - **Disabled**: Полупрозрачный текст, отсутствие реакции
 - **Loading**: Отображение спиннера, отсутствие реакции
 
+## Отображение иконки
+- Кнопка поддерживает отображение иконок
+- Иконка размещается после текста с небольшим отступом
+- Поддерживаются следующие иконки: "chevronRight", "user".
+- Размер иконки автоматически подстраивается под размер кнопки.
+
+
 ## Используемые токены
 
 ### Цвета
@@ -115,15 +122,17 @@ const meta: Meta<typeof Button> = {
 			control: "text",
 			table: {
 				type: { summary: "string" },
-				defaultValue: { summary: "Button" },
 			}
+		},
+		iconAfter: {
+			control: "select",
+			options: ["","chevronRight", "user"],
+
 		},
 		mode: {
 			control: { type: "radio" },
 			options: ["primary", "secondary"] as const,
 			table: {
-				type: { summary: "primary | secondary" },
-				defaultValue: { summary: "primary" },
 				category: "Вид"
 			}
 		},
@@ -244,3 +253,29 @@ export const State: Story = {
 		},
 	}
 };
+
+/**
+ * Примеры кнопок разных размеров
+ */
+export const WithiconAfter: Story = {
+	render: (args) => (
+		<div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+			<Button {...args} size="small" text="Small"  />
+			<Button {...args} size="medium" text="Medium"  />
+			<Button {...args} size="large" text="Large" />
+		</div>
+	),
+	args: {
+        mode: "primary",
+        disabled: false,
+        loading: false,
+        iconAfter: "chevronRight"
+    },
+	parameters: {
+		controls: {
+			exclude: ["size", "text"],
+		},
+	},
+	name: "With iconAfter",
+};
+

@@ -1,5 +1,7 @@
 import styled, { css } from "styled-components";
 import { typography } from "../theme/tokens/typography";
+import { Icon } from "../icon/icon";
+
 
 /**
  * Интерфейс для свойств компонента Button
@@ -15,6 +17,8 @@ export interface IButtonProps {
     disabled?: boolean;
     /** Состояние загрузки */
     loading?: boolean;
+    /** Название иконки */
+    iconAfter?: "chevronRight" | "user";
 }
 
 // Используем transient-prop: $loading
@@ -102,7 +106,9 @@ const StyledButton = styled.button<{
     `}
 `;
 
-const ButtonText = styled.span<{ loading?: boolean; disabled?: boolean }>`
+const Content = styled.span<{ loading?: boolean; disabled?: boolean }>`\
+    display: flex;
+    gap: 4px;
     ${(props) => props.loading && css`opacity: 0;`}
     ${(props) => props.disabled && !props.loading && css`opacity: 0.4;`}
 `;
@@ -128,29 +134,98 @@ const Spinner = styled.div`
 /**
  * Компонент Button - интерактивная кнопка с поддержкой различных режимов, размеров и состояний
  *
+ * ## Режимы отображения (mode):
+ * - **primary** (по умолчанию) - Основной стиль кнопки с акцентным цветом фона
+ * - **secondary** - Второстепенный стиль кнопки с нейтральным цветом фона
+ *
+ * ## Размеры кнопки (size):
+ * - **small** - Маленькая кнопка (32px высота, размер иконки 16px)
+ * - **medium** (по умолчанию) - Средняя кнопка (40px высота, размер иконки 20px)
+ * - **large** - Большая кнопка (52px высота, размер иконки 24px)
+ *
+ * ## Состояния кнопки:
+ * - **Обычное состояние** - Стандартное интерактивное состояние кнопки
+ * - **Hover** - При наведении курсора мыши (изменяется цвет фона)
+ * - **Active** - При нажатии кнопки мыши (изменяется цвет фона)
+ * - **Disabled** - Отключенное состояние (кнопка не реагирует на взаимодействие, курсор not-allowed)
+ * - **Loading** - Состояние загрузки (текст скрывается, отображается анимированный спиннер)
+ *
+ * ## Работа с иконками:
+ * Кнопка поддерживает отображение иконок внутри текста кнопки.
+ * Иконка размещается после текста с небольшим отступом (gap: 4px).
+ * Поддерживаются следующие иконки: "chevronRight", "user".
+ * Размер иконки автоматически подстраивается под размер кнопки.
+ *
+ * ## Поведение состояний:
+ * - При наведении (hover) цвет фона кнопки изменяется на hover-вариант
+ * - При нажатии (active) цвет фона изменяется на active-вариант
+ * - В отключенном состоянии кнопка имеет сниженную прозрачность и курсор not-allowed
+ * - В состоянии загрузки текст кнопки скрывается, а вместо него показывается спиннер
+ * - Состояния disabled и loading могут комбинироваться
+ *
  * @param text - Текст кнопки (по умолчанию: "Button")
- * @param mode - Режим отображения: "primary" (основной) или "secondary" (второстепенный)
- * @param size - Размер кнопки: "small", "medium" или "large"
- * @param disabled - Отключенное состояние кнопки
- * @param loading - Состояние загрузки с отображением спиннера вместо текста
+ * @param mode - Режим отображения: "primary" или "secondary" (по умолчанию: "primary")
+ * @param size - Размер кнопки: "small", "medium" или "large" (по умолчанию: "medium")
+ * @param disabled - Отключенное состояние кнопки (по умолчанию: false)
+ * @param loading - Состояние загрузки с отображением спиннера (по умолчанию: false)
+ * @param iconAfter - Название иконки для отображения после текста: "chevronRight" | "user"
+ *
+ * ## Примеры использования:
+ *
+ * ```tsx
+ * // Базовая кнопка
+ * <Button text="Отправить" />
+ *
+ * // Кнопка с иконкой
+ * <Button text="Далее" iconAfter="chevronRight" />
+ *
+ * // Большая кнопка в состоянии загрузки
+ * <Button text="Сохранить" size="large" loading={isSaving} />
+ *
+ * // Отключенная кнопка с иконкой
+ * <Button text="Пользователь" iconAfter="user" disabled />
+ *
+ * // Второстепенная кнопка
+ * <Button text="Отмена" mode="secondary" />
+ * ```
  */
 export const Button: React.FC<IButtonProps> = ({
-    text = "Button",
+    text,
     mode = "primary",
     size = "medium",
     disabled = false,
     loading = false,
+    iconAfter,
 }) => {
     const buttonText = text ? text : "The Button";
+    
+    const iconSize = (buttonSize: "small" | "medium" | "large") => {
+        switch (buttonSize) {
+            case "small": return 16;
+            case "medium": return 20;
+            case "large": return 24;
+            default: return 20;
+        }
+    };
+
     return (
         <StyledButton
             mode={mode}
             size={size}
             disabled={disabled || loading}
-            $loading={loading} // transient prop для стилей, не попадает в DOM
+            $loading={loading}
         >
-            <ButtonText loading={loading} disabled={disabled}>{buttonText}</ButtonText>
+            <Content loading={loading} disabled={disabled}>
+                {buttonText}
+                {iconAfter && (
+                <Icon
+                    iconName={iconAfter}
+                    size={iconSize(size)}
+                />
+            )}
+            </Content>
             {loading && <Spinner />}
+            
         </StyledButton>
     );
 };
