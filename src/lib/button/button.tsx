@@ -1,11 +1,19 @@
 import styled, { css } from "styled-components";
 import { typography } from "../theme/tokens/typography";
 
+/**
+ * Интерфейс для свойств компонента Button
+ */
 export interface IButtonProps {
+    /** Текст кнопки */
     text?: string;
+    /** Стиль кнопки */
     mode?: "primary" | "secondary";
+    /** Размер кнопки */
     size?: "small" | "medium" | "large";
+    /** Заблокированное состояние кнопки */
     disabled?: boolean;
+    /** Состояние загрузки */
     loading?: boolean;
 }
 
@@ -117,6 +125,15 @@ const Spinner = styled.div`
     }
 `;
 
+/**
+ * Компонент Button - интерактивная кнопка с поддержкой различных режимов, размеров и состояний
+ *
+ * @param text - Текст кнопки (по умолчанию: "Button")
+ * @param mode - Режим отображения: "primary" (основной) или "secondary" (второстепенный)
+ * @param size - Размер кнопки: "small", "medium" или "large"
+ * @param disabled - Отключенное состояние кнопки
+ * @param loading - Состояние загрузки с отображением спиннера вместо текста
+ */
 export const Button: React.FC<IButtonProps> = ({
     text = "Button",
     mode = "primary",

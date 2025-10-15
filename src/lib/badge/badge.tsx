@@ -2,9 +2,29 @@
 import styled, { css } from "styled-components";
 import { typography } from "../theme/tokens/typography";
 
+/**
+ * Интерфейс для свойств компонента Badge
+ */
 export interface IBadgeProps {
+	/**
+	 * Текст бейджа
+	 * @default "Badge"
+	 */
 	text?: string;
+	/**
+	 * Цветовая схема
+	 * - primary: основной режим с акцентным цветом
+	 * - secondary: второстепенный режим с нейтральным цветом
+	 * - neutral: нейтральный режим для информационных сообщений
+	 * @default "primary"
+	 */
 	mode?: "primary" | "secondary" | "neutral";
+	/**
+	 * Размер бейджа
+	 * - small: компактный размер для ограниченного пространства
+	 * - medium: стандартный размер для большинства случаев
+	 * @default "small"
+	 */
 	size?: "small" | "medium";
 }
 
@@ -34,7 +54,7 @@ const badgeSize = {
 			font-size: ${typography.fontSize.medium};
 			line-height: ${typography.lineHeight.medium};
 			padding: 4px 20px;
-			min-height: 32px;
+			height: 32px;
 			`,
 	small: css`
 			font-size: ${typography.fontSize.small};
@@ -50,7 +70,7 @@ const StyledBadge = styled.div<IBadgeProps>`
 	font-weight: 500;
 	font-family: ${typography.fontFamily.base};
 	font-weight: ${typography.fontWeight.regular};
-	text-align: center;
+	vertical-align: middle;
 	white-space: nowrap;
 	border-radius: 999px;
 	max-width: 200px;
@@ -61,11 +81,18 @@ const StyledBadge = styled.div<IBadgeProps>`
 `;
 
 
-export const Badge: React.FC<IBadgeProps> = ({... props}) => {
-	const badgeText = props.text ? props.text : "Badge";
+/**
+ * Компонент Badge - элемент для отображения статусов, категорий или меток
+ *
+ * @param text - Текст бейджа (по умолчанию: "Badge")
+ * @param mode - Режим отображения: "primary" (основной), "secondary" (второстепенный) или "neutral" (нейтральный)
+ * @param size - Размер бейджа: "small" или "medium"
+ */
+export const Badge: React.FC<IBadgeProps> = ({ text, mode, size}) => {
+	const badgeText = text ? text : "Badge";
 
 	return (
-		<StyledBadge mode={props.mode} size={props.size}>
+		<StyledBadge mode={mode} size={size}>
 			{badgeText}
 		</StyledBadge>
 	);

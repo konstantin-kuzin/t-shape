@@ -2,11 +2,17 @@ import styled from "styled-components";
 import { typography } from "../theme/tokens/typography";
 import { Badge } from "../badge/badge";
 
+/**
+ * Интерфейс для свойств компонента Card
+ */
 export interface ICardProps {
+	/** Основной текст карточки */
 	text?: string;
-	date?: string;
-	badge?: boolean;
+	/** Дополнительный текст */
+	additionalText?: string;
+	/** Текст бейджа. Если не передан - бейдж не отображается */
 	badgeText?: string;
+	/** URL фонового изображения */
 	imageUrl?: string;
 }
 
@@ -67,7 +73,7 @@ const CardText = styled.div`
 	font-weight: ${typography.fontWeight.semiBold};
 `;
 
-const CardDate = styled.div`
+const CardadditionalText = styled.div`
 	font-family: ${typography.fontFamily.base};
 	font-size: ${typography.fontSize.small};
 	line-height: ${typography.lineHeight.small};
@@ -75,16 +81,23 @@ const CardDate = styled.div`
 	font-weight: ${typography.fontWeight.regular};
 `;
 
+/**
+ * Компонент Card - карточка для отображения контента. 
+ *
+ * @param text - Основной текст карточки (по умолчанию содержит пример текста о погоде)
+ * @param additionalText - Дата или дополнительная информация (по умолчанию: "2 апреля 2025 г., 08:00")
+ * @param badgeText - Текст бейджа (по умолчанию: "Новости")
+ * @param imageUrl - URL фонового изображения карточки
+ */
 export const Card: React.FC<ICardProps> = ({
-	text = "Сегодня местами в Подмосковье идёт дождь — в некоторых округах он будет ещё и завтра.",
-	date = "2 апреля 2025 г., 08:00",
-	badge = true,
-	badgeText = "Новости",
+	text = "Text",
+	additionalText = "Text",
+	badgeText,
 	imageUrl,
 }) => {
 	return (
 		<CardWrapper>
-			{badge && (
+			{badgeText && (
 				<BadgeContainer>
 					<Badge
 						text={badgeText}
@@ -96,7 +109,7 @@ export const Card: React.FC<ICardProps> = ({
 			<BackgroundImage imageUrl={imageUrl} />
 			<Content>
 				<CardText>{text}</CardText>
-				<CardDate>{date}</CardDate>
+				<CardadditionalText>{additionalText}</CardadditionalText>
 			</Content>
 		</CardWrapper>
 	);

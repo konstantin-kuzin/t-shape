@@ -23,11 +23,17 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     #storybook-root {
         background: ${({ theme }) => theme.colors.bg.base};
         color: ${({ theme }) => theme.colors.text.base};
-        min-height: 100vh;
         transition: background-color 0.2s ease, color 0.2s ease;
         display: flex;
         gap: 16px;
         align-items: center;
-        margin: 100px;
+        justify-content: center;
+
+        margin: 50px;
+    }
+
+    #storybook-docs {
+        margin: 0px;
+        padding:0px;
     }
 `;

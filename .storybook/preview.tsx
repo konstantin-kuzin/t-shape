@@ -1,4 +1,4 @@
-import type { Preview } from "@storybook/react";
+import type { Preview } from "@storybook/react-vite";
 
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme, GlobalStyle } from "../src/lib";
@@ -44,7 +44,11 @@ const preview: Preview = {
 	},
 };
 
-export default preview;
+
+export default {
+	preview,
+  	tags: ['autodocs']
+}
 
 export const decorators = [
 	(Story: React.ElementType, context: { globals: { theme: string } }) => {

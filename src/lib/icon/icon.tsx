@@ -2,19 +2,22 @@ import { FC } from "react";
 import styled from "styled-components";
 import { icons } from "./icons-set";
 
+/**
+ * Интерфейс для свойств компонента Icon
+ */
 export interface ISvgProps {
 	/**
-	 * Меняет display с inline-block на block
+	 * Меняет display с inline-block на block для блочного отображения
 	 */
 	block?: boolean;
 
 	/**
-	 * Название иконки
+	 * Название иконки из набора icons-set
 	 */
 	iconName?: string;
 
 	/**
-	 * Размер иконки
+	 * Размер иконки в пикселях
 	 */
 	size?: number;
 }
@@ -31,7 +34,12 @@ const Path = styled.path`
 `;
 
 /**
- * Компонент иконка
+ * Компонент Icon - векторная иконка из набора Feather Icons
+ *
+ * @param iconName - Название иконки из набора icons-set (по умолчанию: "browser")
+ * @param block - Блочное отображение вместо inline-block (по умолчанию: false)
+ * @param size - Размер иконки в пикселях (по умолчанию: 24)
+ * @param props - Дополнительные SVG проперти
  */
 export const Icon: FC<ISvgProps> = ({
 	iconName = "browser",
