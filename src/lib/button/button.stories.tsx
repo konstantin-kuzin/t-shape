@@ -40,11 +40,11 @@ const meta: Meta<typeof Button> = {
 
 ## Размеры
 
-| Размер | Мин. ширина | Высота | Padding | Шрифт | Применение |
+| Размер | Мин. ширина | Высота | Шрифт | Применение |
 |--------|--------|--------|---------|-------|-----------|
-| small | 80px | 32px | 8px 16px | 12px | Компактные интерфейсы, таблицы |
-| medium | 95px | 40px | 12px 24px | 14px | Стандартные формы и интерфейсы |
-| large | 102px | 52px | 16px 32px | 16px | Акцентные элементы, мобильные интерфейсы |
+| small | 80px | 32px | 12px | Компактные интерфейсы, таблицы |
+| medium | 88px | 40px | 14px | Стандартные формы и интерфейсы |
+| large | 104px | 48px | 16px | Акцентные элементы, мобильные интерфейсы |
 
 ## Состояния
 
@@ -54,11 +54,14 @@ const meta: Meta<typeof Button> = {
 - **Disabled**: Полупрозрачный текст, отсутствие реакции
 - **Loading**: Отображение спиннера, отсутствие реакции
 
-## Отображение иконки
-- Кнопка поддерживает отображение иконок
-- Иконка размещается после текста с небольшим отступом
-- Поддерживаются следующие иконки: "chevronRight", "user".
-- Размер иконки автоматически подстраивается под размер кнопки.
+## Отображение иконок
+- Кнопка поддерживает отображение иконок до и после текста
+- Иконки размещаются с отступом 4px от текста
+- Поддерживаются следующие иконки: "chevronLeft", "chevronRight", "user"
+- Размер иконки автоматически подстраивается под размер кнопки:
+  - Small: 16px
+  - Medium: 20px  
+  - Large: 24px
 
 
 ## Используемые токены
@@ -89,9 +92,9 @@ const meta: Meta<typeof Button> = {
 
 | Размер кнопки | Размер шрифта | Высота строки | Padding | Мин. высота | Мин. ширина |
 |---------------|---------------|---------------|---------|-------------|-------------|
-| small | \`typography.fontSize.small\` | \`typography.lineHeight.small\` | 0px 16px | 32px | 80px |
-| medium | \`typography.fontSize.medium\` | \`typography.lineHeight.medium\` | 0px 24px | 40px | 90px |
-| large | \`typography.fontSize.big\` | \`typography.lineHeight.big\` | 0px 32px | 52px | 100px |
+| small | \`typography.fontSize.small\` (12px) | \`typography.lineHeight.small\` (16px) | 0px 8px | 32px | 80px |
+| medium | \`typography.fontSize.medium\` (14px) | \`typography.lineHeight.medium\` (20px) | 0px 12px | 44px | 88px |
+| large | \`typography.fontSize.big\` (16px) | \`typography.lineHeight.big\` (20px) | 0px 16px | 56px | 104px |
 
 ## Лучшие практики
 
@@ -117,6 +120,7 @@ const meta: Meta<typeof Button> = {
 			}
 		}
 	},
+	tags: ["autodocs"],
 	argTypes: {
 		text: {
 			control: "text",
@@ -124,10 +128,21 @@ const meta: Meta<typeof Button> = {
 				type: { summary: "string" },
 			}
 		},
+		iconBefore: {
+			control: "select",
+			options: ["", "chevronLeft", "user"],
+			table: {
+				type: { summary: "chevronLeft | user" },
+				category: "Иконки"
+			}
+		},
 		iconAfter: {
 			control: "select",
-			options: ["","chevronRight", "user"],
-
+			options: ["", "chevronRight", "user"],
+			table: {
+				type: { summary: "chevronRight | user" },
+				category: "Иконки"
+			}
 		},
 		mode: {
 			control: { type: "radio" },
@@ -235,13 +250,11 @@ export const Size: Story = {
  */
 export const State: Story = {
 	render: (args) => (
-		<div style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-start" }}>
 			<div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
 				<Button {...args} text="Enabled" />
 				<Button {...args} disabled text="Disabled" />
 				<Button {...args} loading={true} text="Loading" />
 			</div>
-		</div>
 	),
 	args: {
 		mode: "primary",
@@ -255,13 +268,13 @@ export const State: Story = {
 };
 
 /**
- * Примеры кнопок разных размеров
+ * Примеры кнопок с иконками с обеих сторон
  */
-export const WithiconAfter: Story = {
+export const WithIcons: Story = {
 	render: (args) => (
 		<div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-			<Button {...args} size="small" text="Small"  />
-			<Button {...args} size="medium" text="Medium"  />
+			<Button {...args} size="small" text="Small" />
+			<Button {...args} size="medium" text="Medium" />
 			<Button {...args} size="large" text="Large" />
 		</div>
 	),
@@ -269,6 +282,7 @@ export const WithiconAfter: Story = {
         mode: "primary",
         disabled: false,
         loading: false,
+        iconBefore: "user",
         iconAfter: "chevronRight"
     },
 	parameters: {
@@ -276,6 +290,6 @@ export const WithiconAfter: Story = {
 			exclude: ["size", "text"],
 		},
 	},
-	name: "With iconAfter",
+	name: "With icons",
 };
 

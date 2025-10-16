@@ -15,7 +15,6 @@ const meta: Meta<typeof Card> = {
 		controls: {
 			expanded: true
 		},
-		tags: ["autodocs"],
 		docs: {
 			description: {
 				component: `
@@ -69,6 +68,7 @@ const meta: Meta<typeof Card> = {
 			}
 		}
 	},
+	tags: ["autodocs"],
 	argTypes: {
 		text: {
 			control: "text",

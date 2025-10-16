@@ -42,22 +42,18 @@ const preview: Preview = {
 			},
 		},
 	},
+	decorators: [
+		(Story, context) => {
+			const theme = context.globals.theme === "dark" ? darkTheme : lightTheme;
+			console.log("Current theme:", context.globals.theme, theme);
+			return (
+				<ThemeProvider theme={theme}>
+					<GlobalStyle />
+					<Story />
+				</ThemeProvider>
+			);
+		},
+	],
 };
 
-
-export default {
-	preview,
-  	tags: ['autodocs']
-}
-
-export const decorators = [
-	(Story: React.ElementType, context: { globals: { theme: string } }) => {
-		const theme = context.globals.theme === "dark" ? darkTheme : lightTheme;
-		return (
-			<ThemeProvider theme={theme}>
-				<GlobalStyle />
-				<Story />
-			</ThemeProvider>
-		);
-	},
-];
+export default preview;

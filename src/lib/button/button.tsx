@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { typography } from "../theme/tokens/typography";
 import { Icon } from "../icon/icon";
+import { spacers } from "../theme/tokens/spacers";
 
 
 /**
@@ -17,8 +18,11 @@ export interface IButtonProps {
     disabled?: boolean;
     /** Состояние загрузки */
     loading?: boolean;
-    /** Название иконки */
+    /** Название иконки iconBefore */
+    iconBefore?: "chevronLeft" | "user";
+    /** Название иконки iconAfter */
     iconAfter?: "chevronRight" | "user";
+
 }
 
 // Используем transient-prop: $loading
@@ -35,7 +39,7 @@ const StyledButton = styled.button<{
     font-weight: ${typography.fontWeight.semiBold};
     text-align: center;
     white-space: nowrap;
-    border-radius: 4px;
+    border-radius: ${spacers[4]};
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
@@ -43,25 +47,25 @@ const StyledButton = styled.button<{
     ${(props) => props.size === "small" && `
         font-size: ${typography.fontSize.small};
         line-height: ${typography.lineHeight.small};
-        padding: 0px 16px;
-        min-height: 32px;
-        min-width: 80px;
+        padding: ${spacers[0]} ${spacers[8]};
+        min-height: ${spacers[32]};
+        min-width: ${spacers[80]};
     `}
 
     ${(props) => props.size === "medium" && `
         font-size: ${typography.fontSize.medium};
         line-height: ${typography.lineHeight.medium};
-        padding: 0px 24px;
-        min-height: 40px;
-        min-width: 90px;
+        padding: ${spacers[0]} ${spacers[12]};
+        min-height: ${spacers[40]};
+        min-width: ${spacers[88]};
     `}
 
     ${(props) => props.size === "large" && `
         font-size: ${typography.fontSize.big};
         line-height: ${typography.lineHeight.big};
-        padding: 0px 32px;
-        min-height: 52px;
-        min-width: 100px;   
+        padding: ${spacers[0]} ${spacers[16]};
+        min-height: ${spacers[48]};
+        min-width: ${spacers[104]};   
     `}
 
     ${(props) => props.mode === "primary" && `
@@ -108,9 +112,16 @@ const StyledButton = styled.button<{
 
 const Content = styled.span<{ loading?: boolean; disabled?: boolean }>`\
     display: flex;
-    gap: 4px;
+    gap: ${spacers[4]};
     ${(props) => props.loading && css`opacity: 0;`}
     ${(props) => props.disabled && !props.loading && css`opacity: 0.4;`}
+`;
+
+const IconContainer = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: ${(props) => props.theme.colors.fg.inverted};
 `;
 
 const Spinner = styled.div`
@@ -118,10 +129,10 @@ const Spinner = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 16px;
-    height: 16px;
-    border: 2px solid currentColor;
-    border-top: 2px solid transparent;
+    width: ${spacers[16]};
+    height: ${spacers[16]};
+    border: ${spacers[2]} solid currentColor;
+    border-top: ${spacers[2]} solid transparent;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 
@@ -138,14 +149,13 @@ export const Button: React.FC<IButtonProps> = ({
     disabled = false,
     loading = false,
     iconAfter,
+    iconBefore,
 }) => {
     const buttonText = text ? text : "The Button";
-    
+
     const iconSize = (buttonSize: "small" | "medium" | "large") => {
         switch (buttonSize) {
             case "small": return 16;
-            case "medium": return 20;
-            case "large": return 24;
             default: return 20;
         }
     };
@@ -158,16 +168,24 @@ export const Button: React.FC<IButtonProps> = ({
             $loading={loading}
         >
             <Content loading={loading} disabled={disabled}>
+            {iconBefore && (<IconContainer>
+                    <Icon
+                        iconName={iconBefore}
+                        size={iconSize(size)}
+                    />
+                </IconContainer>)}
                 {buttonText}
                 {iconAfter && (
-                <Icon
-                    iconName={iconAfter}
-                    size={iconSize(size)}
-                />
-            )}
+                    <IconContainer  >
+                        <Icon
+                            iconName={iconAfter}
+                            size={iconSize(size)}
+                        />
+                    </IconContainer>
+                )}
             </Content>
             {loading && <Spinner />}
-            
+
         </StyledButton>
     );
 };

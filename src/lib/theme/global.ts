@@ -20,7 +20,18 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
         transition: background-color 0.2s ease, color 0.2s ease;
     }
 
-    #storybook-root {
+    /* Storybook specific styles */
+    .sb-show-main,
+    .sb-main-padded,
+    .sb-main-padded .sb-bar,
+    .sb-main-padded .sb-bar .sb-bar__inner {
+        background: ${({ theme }) => theme.colors.bg.base} !important;
+        color: ${({ theme }) => theme.colors.text.base} !important;
+    }
+
+    #storybook-root,
+    #root,
+    [data-testid="storybook-root"] {
         background: ${({ theme }) => theme.colors.bg.base};
         color: ${({ theme }) => theme.colors.text.base};
         transition: background-color 0.2s ease, color 0.2s ease;
@@ -28,12 +39,14 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
         gap: 16px;
         align-items: center;
         justify-content: center;
-
         margin: 50px;
     }
 
-    #storybook-docs {
+    #storybook-docs,
+    .docs-story {
         margin: 0px;
-        padding:0px;
+        padding: 0px;
+        background: ${({ theme }) => theme.colors.bg.base};
+        color: ${({ theme }) => theme.colors.text.base};
     }
 `;
