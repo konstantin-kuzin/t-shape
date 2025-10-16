@@ -42,11 +42,19 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
         margin: 50px;
     }
 
-    #storybook-docs,
+    #storybook-docs, 
     .docs-story {
         margin: 0px;
         padding: 0px;
         background: ${({ theme }) => theme.colors.bg.base};
         color: ${({ theme }) => theme.colors.text.base};
+    }
+
+     .sbdocs-wrapper {padding: 32px;}
+
+    
+    /* Альтернативный способ - скрываем storybook-root если есть storybook-docs на странице и он не скрыт */
+    body:has(#storybook-docs:not([style*="display: none"]):not([hidden])) #storybook-root {
+        display: none !important;
     }
 `;
