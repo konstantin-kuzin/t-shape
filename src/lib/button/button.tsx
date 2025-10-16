@@ -121,7 +121,7 @@ const IconContainer = styled.span`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${(props) => props.theme.colors.fg.inverted};
+    color: props.mode === "primary" ? ${(props) => props.theme.colors.fg.inverted} : ${(props) => props.theme.colors.fg.invertedStatic};
 `;
 
 const Spinner = styled.div`
@@ -168,19 +168,15 @@ export const Button: React.FC<IButtonProps> = ({
             $loading={loading}
         >
             <Content loading={loading} disabled={disabled}>
-            {iconBefore && (<IconContainer>
-                    <Icon
-                        iconName={iconBefore}
-                        size={iconSize(size)}
-                    />
-                </IconContainer>)}
+                {iconBefore && (
+                    <IconContainer>
+                        <Icon iconName={iconBefore} size={iconSize(size)} />
+                    </IconContainer>
+                )}
                 {buttonText}
                 {iconAfter && (
-                    <IconContainer  >
-                        <Icon
-                            iconName={iconAfter}
-                            size={iconSize(size)}
-                        />
+                    <IconContainer>
+                        <Icon iconName={iconAfter} size={iconSize(size)} />
                     </IconContainer>
                 )}
             </Content>

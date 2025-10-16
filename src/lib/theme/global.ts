@@ -32,7 +32,6 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     #storybook-root,
     #root,
     [data-testid="storybook-root"] {
-        background: ${({ theme }) => theme.colors.bg.base};
         color: ${({ theme }) => theme.colors.text.base};
         transition: background-color 0.2s ease, color 0.2s ease;
         display: flex;
