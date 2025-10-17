@@ -48,6 +48,17 @@ const meta: Meta<typeof Card> = {
 - Усиление границы
 - Плавный переход (0.2s ease)
 
+## Варианты 
+###interactive=true
+- Вся карточка кликабельна
+- Hover эффекты активны
+- Используется по умолчанию для создания интерактивных карточек
+
+###interactive=false
+- Карточка не интерактивная
+- На карточке отображается кнопка
+
+
 ## Особенности
 
 - **Адаптивность**: Ширина карточки автоматически подстраивается под контент
@@ -113,5 +124,25 @@ export const Base: Story = {
 		additionalText: "31 июня 2025 г.",
 		badgeText: "Новости",
 		imageUrl: "https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/c70c4a02-f7af-510c-92b0-54d3fe9d0b6c/8f037b8a-487e-5bc4-8aef-95264a468c03.jpg",
+		interactive: true,
 	},
+};
+
+export const Interactive: Story = {
+	render: (args) => (
+		<div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+		<Card {...args} interactive = {false} buttonText = "Подробнее"  text="На этой карточке нужно нажать кнопку"/>
+		<Card {...args} interactive = {true} text="Эта карточка полностью кликабельна" />
+		</div>
+		),
+	args: {
+		text: "Сегодня местами в Подмосковье идёт дождь — в некоторых округах он будет ещё и завтра.",
+		imageUrl: "https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/c70c4a02-f7af-510c-92b0-54d3fe9d0b6c/8f037b8a-487e-5bc4-8aef-95264a468c03.jpg",
+		badgeText: "interactive state",
+	},
+	parameters: {
+		controls: {
+			exclude: ["interactive", "buttonText"],
+		},
+	}
 };
