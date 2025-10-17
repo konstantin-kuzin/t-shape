@@ -7,7 +7,7 @@ import { spacers } from "../theme/tokens/spacers";
 type ButtonSize = "small" | "medium" | "large";
 type ButtonMode = "primary" | "secondary";
 type iconBefore = "chevronLeft" | "user";
-type iconAfter = "chevronRight" | "user";
+type iconAfter  = "chevronRight" | "user";
 
 
 /**
@@ -15,7 +15,7 @@ type iconAfter = "chevronRight" | "user";
  */
 export interface IButtonProps {
     /** Текст кнопки */
-    text?: string;
+    text: string;
     /** Стиль кнопки */
     mode?: ButtonMode
     /** Размер кнопки */
@@ -28,16 +28,10 @@ export interface IButtonProps {
     iconBefore?: iconBefore
     /** Название иконки iconAfter */
     iconAfter?: iconAfter
-
 }
 
-// Используем transient-prop: $loading
-const StyledButton = styled.button<{
-    mode?: ButtonMode
-    size?: ButtonSize
-    disabled?: boolean;
-    $loading?: boolean; // transient prop
-}>`
+
+const StyledButton = styled.button<IButtonProps>`
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -157,7 +151,7 @@ export const Button: React.FC<IButtonProps> = ({
     iconAfter,
     iconBefore,
 }) => {
-    const buttonText = text ? text : "The Button";
+    const buttonText = text || "The Button";
 
     const iconSize = (buttonSize: ButtonSize) => {
         switch (buttonSize) {
@@ -168,10 +162,11 @@ export const Button: React.FC<IButtonProps> = ({
 
     return (
         <StyledButton
+            text={text}
             mode={mode}
             size={size}
             disabled={disabled || loading}
-            $loading={loading}
+            loading={loading}
         >
             <Content loading={loading} disabled={disabled}>
                 {iconBefore && (
