@@ -8,7 +8,8 @@ function App() {
 		<ThemeProvider theme={switcher ? lightTheme : darkTheme}>
 			<GlobalStyle />
 			<main style={{ padding: "20px", display: "flex", gap: "16px", alignItems: "center" }}>
-				<Card />
+				<Card interactive={false} buttonText="Превед"/>
+				<Card interactive={true} />
 			</main>
 		</ThemeProvider>
 	);

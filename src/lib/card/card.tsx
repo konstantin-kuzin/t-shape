@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { typography } from "../theme/tokens/typography";
 import { Badge } from "../badge/badge";
+import { Button } from "../button/button";
 
 /**
  * Интерфейс для свойств компонента Card
@@ -14,9 +15,14 @@ export interface ICardProps {
 	badgeText?: string;
 	/** URL фонового изображения */
 	imageUrl?: string;
+	/** Интерактивность */
+	interactive?: boolean;
+	/** Текст на кнопке */
+	buttonText?: string;
+
 }
 
-const CardWrapper = styled.div`
+const CardWrapper = styled.div<{ interactive?: boolean }>`
 	position: relative; 
 	width: 100%;
 	min-width: 280px;
@@ -27,12 +33,14 @@ const CardWrapper = styled.div`
 	overflow: hidden;
 	box-sizing: border-box;
 	transition: all 0.2s ease;
-	cursor: pointer;
+	cursor: ${(props) => (props.interactive ? "pointer" : "default")};
 
-	&:hover {
-		background-color: ${(props) => props.theme.colors.bg.primarySubtle};
-		border-color: ${(props) => props.theme.colors.border.primary};
-	}
+	${(props) => props.interactive && `
+		&:hover {
+			background-color: ${props.theme.colors.bg.primarySubtle};
+			border-color: ${props.theme.colors.border.primary};
+		}
+	`}
 `;
 
 const BadgeContainer = styled.div`
@@ -73,7 +81,7 @@ const CardText = styled.div`
 	font-weight: ${typography.fontWeight.semiBold};
 `;
 
-const CardadditionalText = styled.div`
+const CardAdditionalText = styled.div`
 	font-family: ${typography.fontFamily.base};
 	font-size: ${typography.fontSize.small};
 	line-height: ${typography.lineHeight.small};
@@ -94,9 +102,11 @@ export const Card: React.FC<ICardProps> = ({
 	additionalText = "Text",
 	badgeText,
 	imageUrl,
+	interactive = true,
+	buttonText = "Открыть",
 }) => {
 	return (
-		<CardWrapper>
+		<CardWrapper interactive={interactive}>
 			{badgeText && (
 				<BadgeContainer>
 					<Badge
@@ -109,7 +119,8 @@ export const Card: React.FC<ICardProps> = ({
 			<BackgroundImage imageUrl={imageUrl} />
 			<Content>
 				<CardText>{text}</CardText>
-				<CardadditionalText>{additionalText}</CardadditionalText>
+				<CardAdditionalText>{additionalText}</CardAdditionalText>
+				{!interactive && <div style={{ paddingTop: '8px' }}><Button text={buttonText} /></div>}
 			</Content>
 		</CardWrapper>
 	);
