@@ -1,7 +1,13 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { typography } from "../theme/tokens/typography";
 import { Icon } from "../icon/icon";
 import { spacers } from "../theme/tokens/spacers";
+
+
+type ButtonSize = "small" | "medium" | "large";
+type ButtonMode = "primary" | "secondary";
+type iconBefore = "chevronLeft" | "user";
+type iconAfter = "chevronRight" | "user";
 
 
 /**
@@ -11,24 +17,24 @@ export interface IButtonProps {
     /** Текст кнопки */
     text?: string;
     /** Стиль кнопки */
-    mode?: "primary" | "secondary";
+    mode?: ButtonMode
     /** Размер кнопки */
-    size?: "small" | "medium" | "large";
+    size?: ButtonSize
     /** Заблокированное состояние кнопки */
     disabled?: boolean;
     /** Состояние загрузки */
     loading?: boolean;
     /** Название иконки iconBefore */
-    iconBefore?: "chevronLeft" | "user";
+    iconBefore?: iconBefore
     /** Название иконки iconAfter */
-    iconAfter?: "chevronRight" | "user";
+    iconAfter?: iconAfter
 
 }
 
 // Используем transient-prop: $loading
 const StyledButton = styled.button<{
-    mode?: "primary" | "secondary";
-    size?: "small" | "medium" | "large";
+    mode?: ButtonMode
+    size?: ButtonSize
     disabled?: boolean;
     $loading?: boolean; // transient prop
 }>`
@@ -113,8 +119,8 @@ const StyledButton = styled.button<{
 const Content = styled.span<{ loading?: boolean; disabled?: boolean }>`\
     display: flex;
     gap: ${spacers[4]};
-    ${(props) => props.loading && css`opacity: 0;`}
-    ${(props) => props.disabled && !props.loading && css`opacity: 0.4;`}
+    ${(props) => props.loading && `opacity: 0;`}
+    ${(props) => props.disabled && !props.loading && `opacity: 0.4;`}
 `;
 
 const IconContainer = styled.span`
@@ -153,7 +159,7 @@ export const Button: React.FC<IButtonProps> = ({
 }) => {
     const buttonText = text ? text : "The Button";
 
-    const iconSize = (buttonSize: "small" | "medium" | "large") => {
+    const iconSize = (buttonSize: ButtonSize) => {
         switch (buttonSize) {
             case "small": return 16;
             default: return 20;

@@ -2,6 +2,10 @@
 import styled, { css } from "styled-components";
 import { typography } from "../theme/tokens/typography";
 
+
+type BadgeSize = "small" | "medium";
+type BadgeMode = "primary" | "secondary" | "neutral";
+
 /**
  * Интерфейс для свойств компонента Badge
  */
@@ -18,14 +22,14 @@ export interface IBadgeProps {
 	 * - neutral: нейтральный режим для информационных сообщений
 	 * @default "primary"
 	 */
-	mode?: "primary" | "secondary" | "neutral";
+	mode?: BadgeMode;
 	/**
 	 * Размер бейджа
 	 * - small: компактный размер для ограниченного пространства
 	 * - medium: стандартный размер для большинства случаев
 	 * @default "small"
 	 */
-	size?: "small" | "medium";
+	size?: BadgeSize;
 }
 
 
@@ -62,7 +66,7 @@ const badgeSize = {
 			padding: 2px 16px;
 			min-height: 20px;
 			`,
-	}
+}
 
 const StyledBadge = styled.div<IBadgeProps>`
 	display: inline-block;
@@ -88,7 +92,7 @@ const StyledBadge = styled.div<IBadgeProps>`
  * @param mode - Режим отображения: "primary" (основной), "secondary" (второстепенный) или "neutral" (нейтральный)
  * @param size - Размер бейджа: "small" или "medium"
  */
-export const Badge: React.FC<IBadgeProps> = ({ text, mode, size}) => {
+export const Badge: React.FC<IBadgeProps> = ({ text, mode, size }) => {
 	const badgeText = text ? text : "Badge";
 
 	return (
