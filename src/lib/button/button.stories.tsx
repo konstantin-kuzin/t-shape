@@ -90,11 +90,11 @@ const meta: Meta<typeof Button> = {
 
 #### Размеры шрифта и высота строки
 
-| Размер кнопки | Размер шрифта | Высота строки | Padding | Мин. высота | Мин. ширина |
+| Размер кнопки | Размер шрифта | Высота строки |
 |---------------|---------------|---------------|---------|-------------|-------------|
-| small | \`typography.fontSize.small\` (12px) | \`typography.lineHeight.small\` (16px) | 0px 8px | 32px | 80px |
-| medium | \`typography.fontSize.medium\` (14px) | \`typography.lineHeight.medium\` (20px) | 0px 12px | 44px | 88px |
-| large | \`typography.fontSize.big\` (16px) | \`typography.lineHeight.big\` (20px) | 0px 16px | 56px | 104px |
+| small | \`typography.fontSize.small\` (12px) | \`typography.lineHeight.small\` (16px) |
+| medium | \`typography.fontSize.medium\` (14px) | \`typography.lineHeight.medium\` (20px) |
+| large | \`typography.fontSize.big\` (16px) | \`typography.lineHeight.big\` (20px) |
 
 ## Лучшие практики
 
